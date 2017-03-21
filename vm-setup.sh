@@ -1,3 +1,6 @@
+## Esta prova de conceito usou Free Tier da Amazon EC2, zona de São Paulo
+
+
 ##ubuntu@ip-172-31-14-179:~$ cat /etc/*release
 #DISTRIB_ID=Ubuntu
 #DISTRIB_RELEASE=16.04
@@ -13,7 +16,6 @@
 #SUPPORT_URL="http://help.ubuntu.com/"
 #BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/"
 #VERSION_CODENAME=xenial
-
 
 
 sudo apt-get update
