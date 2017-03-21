@@ -26,3 +26,6 @@ systemctl start nginx
 
 # WinSCP as Sudo https://winscp.net/eng/docs/faq_su
 sudo sh -c 'echo "ubuntu  ALL=NOPASSWD: /bin/sftp-server" >> /etc/sudoers'
+
+# Implode o padrão
+sudo sh -c 'echo "#Arquivo propositalmente vazio" > /etc/nginx/sites-available/default'
