@@ -29,3 +29,8 @@ sudo sh -c 'echo "ubuntu  ALL=NOPASSWD: /bin/sftp-server" >> /etc/sudoers'
 
 # Implode o padrão
 sudo sh -c 'echo "#Arquivo propositalmente vazio" > /etc/nginx/sites-available/default'
+
+## https://www.howtoforge.com/nginx-how-to-block-visitors-by-country-with-the-geoip-module-debian-ubuntu
+# nginx -V | grep geo
+# sudo apt-get install geoip-database libgeoip1
+# ls -lah /usr/share/GeoIP/GeoIP.dat

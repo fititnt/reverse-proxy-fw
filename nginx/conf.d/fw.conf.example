@@ -1,1 +1,44 @@
-# Rename to fw.conf
+# Renomeie para fw.conf
+
+
+
+
+## @todo https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus/
+## @todo possivelmente usar limit_except http://nginx.org/en/docs/http/ngx_http_core_module.html#limit_except
+
+geoip_country /usr/share/GeoIP/GeoIP.dat;
+    map $geoip_country_code $allowed_country {
+        default no;
+        BR yes;
+}
+
+
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    # https://www.nginx.com/resources/wiki/start/topics/depth/ifisevil/
+    # http://rosslawley.co.uk/archive/old/2010/01/04/nginx-how-to-multiple-if-statements/
+    if ($request_method !~ ^(GET|HEAD)$) {
+        set $devo_permitir  "${allowed_country}oooo";
+    }
+
+    location / {
+
+        # if ($devo_permitir = "yesoooo") {
+        if ($devo_permitir = "nooooo") {
+            add_header  X-Proxy "Fale com seu administrador de rede";
+            return 403;
+        }
+
+        #proxy_set_header X-Forwarded-Proto $scheme;
+        #proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        #proxy_set_header Host "xxxx.uf.gov.br";
+        proxy_set_header X-Real-IP $remote_addr;
+
+        add_header  X-Proxy "I am not a teapot";
+	
+        proxy_pass http://xxx.xxx.xxx.xx:80; # ESPECIFIQUE SEU IP AQUI
+    }
+}
